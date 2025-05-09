@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="email_template_installment_due" model="mail.template">
+        <field name="model_id" ref="model_loan_installment"/>
+        <field name="name">Loan Installment Due</field>
+        <field name="email_from">{{ user.email }}</field>
+        <field name="email_to">{{ object.loan_id.customer_id.email }}</field>
+        <field name="subject">Loan Installment Due: #{{ object.installment_no }}</field>
+        <field name="body_html"><![CDATA[
+            <div>
+            <p>Dear {{ object.loan_id.customer_id.name }},</p>
+            <p>Your loan installment #{{ object.installment_no }} is due on {{ object.due_date }}.</p>
+            <p>Installment Amount: {{ object.amount }}</p>
+            <p>Please ensure timely payment to avoid any penalties.</p>
+            <br/>
+            <p>Best regards,<br/>Loan Management Team</p>
+            </div>
+                ]]></field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo>

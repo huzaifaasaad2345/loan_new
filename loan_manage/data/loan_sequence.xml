@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_loan_application" model="ir.sequence">
+        <field name="name">Loan Application</field>
+        <field name="code">loan.application</field>
+        <field name="prefix">LOAN-</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+    </record>
+</odoo>

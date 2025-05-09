@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="menu_loan_root" name="Loan Management"/>
+    <menuitem id="menu_loan_record" name="Loan Records" parent="menu_loan_root" action="action_loan_application"/>
+</odoo>

@@ -1,0 +1,90 @@
+<odoo>
+
+    <!-- Action -->
+    <record id="action_loan_application" model="ir.actions.act_window">
+        <field name="name">Loan Applications</field>
+        <field name="res_model">loan.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Tree View for Loan Application -->
+    <record id="view_loan_application_tree" model="ir.ui.view">
+        <field name="name">loan.application.tree</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="loan_amount"/>
+                <field name="start_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Tree View for Installments  -->
+    <record id="view_loan_installment_tree_inline" model="ir.ui.view">
+        <field name="name">loan.installment.tree.inline</field>
+        <field name="model">loan.installment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="installment_no"/>
+                <field name="due_date"/>
+                <field name="amount"/>
+                <field name="description"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_loan_application_form" model="ir.ui.view">
+        <field name="name">loan.application.form</field>
+        <field name="model">loan.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="crone_send_due_installment_emails" string="Send Email" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="customer_id"/>
+                        <field name="loan_amount"/>
+                        <field name="duration_months"/>
+                        <field name="start_date"/>
+                    </group>
+
+                    <!-- ✅ NEW Group: for A + B compute testing -->
+                    <group string="Test A + B">
+                        <field name="a"/>
+                        <field name="b"/>
+                        <field name="c"/>
+                        <field name="d"/>
+                    </group>
+
+                    <group>
+                        <field name="installment_ids" string="">
+                            <tree create="1" delete="1">
+                                <field name="installment_no"/>
+                                <field name="due_date"/>
+                                <field name="amount"/>
+                                <field name="description"/>
+                                <field name="status"/>
+                                <field name="invoice_status" decoration-success="invoice_status == 'posted'"
+                                       decoration-info="invoice_status == 'draft'" widget="badge"/>
+                                <field name="invoice_id" widget="many2one" options="{'no_open': False}"/>
+                                <button name="action_mark_as_paid"
+                                        type="object"
+                                        string="Pay"
+                                        class="btn-primary"/>
+
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

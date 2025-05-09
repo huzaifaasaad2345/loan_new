@@ -1,0 +1,17 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- Cron Job to Send Installment Email Reminders -->
+        <record id="ir_cron_send_loan_installment_emails" model="ir.cron">
+            <field name="name">Send Loan Installment Email Reminders</field>
+            <field name="model_id" ref="model_loan_application"/>
+            <field name="state">code</field>
+            <field name="code">model.crone_send_due_installment_emails()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+        </record>
+
+    </data>
+</odoo>
